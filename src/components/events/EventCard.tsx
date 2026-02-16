@@ -2,6 +2,8 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Button from "@/components/Button";
+import Image from "next/image";
+import homecomingImage from "@/assets/images/Events/homecoming-sdc-26.png";
 
 export interface EventCardProps {
   id: string;
@@ -34,6 +36,7 @@ export default function EventCard({
   });
   const spotsLeft = capacity - registeredCount;
   const isAlmostFull = spotsLeft <= capacity * 0.2;
+  const displayImage = image || homecomingImage.src;
 
   return (
     <motion.div
@@ -46,8 +49,8 @@ export default function EventCard({
       {/* Event Image */}
       {image ? (
         <div className="relative h-48 overflow-hidden">
-          <img 
-            src={image} 
+          <Image 
+            src={displayImage} 
             alt={title} 
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
@@ -96,7 +99,7 @@ export default function EventCard({
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
-            <span>{registeredCount}/{capacity}</span>
+            <span>{capacity} Students</span>
           </div>
         </div>
 
